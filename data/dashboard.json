@@ -1,0 +1,134 @@
+{
+  "mark": "IRA",
+  "title": "IRA Reserve & Growth Desk",
+  "subtitle": "3-year cash reserve plus 40/40/20 growth sleeve",
+  "lead_label": "Guide account value",
+  "total_value": 14610.0,
+  "required_action": "Confirm reserve; no growth rebalance",
+  "next_review": "August 2027",
+  "explanation": "Account balances are the August 3 guide values. Daily refresh updates market signals; broker balances remain private and require a manual value update.",
+  "allocation_label": "Growth target 40/40/20",
+  "tracking_start": "2026-08-03",
+  "sleeves": [
+    {
+      "name": "IRA_QQQ",
+      "value": 4880.0,
+      "weight": 39.64256701868399,
+      "target": 40,
+      "drift": -0.3574329813160091,
+      "position": "QQQ",
+      "signal": "Defensive",
+      "action": "No action",
+      "note": "Growth sleeve weight"
+    },
+    {
+      "name": "IRA_SPY",
+      "value": 4880.0,
+      "weight": 39.64256701868399,
+      "target": 40,
+      "drift": -0.3574329813160091,
+      "position": "SSO",
+      "signal": "Risk-on",
+      "action": "No action",
+      "note": "Growth sleeve weight"
+    },
+    {
+      "name": "IRA_BTC",
+      "value": 2550.0,
+      "weight": 20.714865962632008,
+      "target": 20,
+      "drift": 0.7148659626320075,
+      "position": "Cash",
+      "signal": "Risk-off",
+      "action": "No action",
+      "note": "Growth sleeve weight"
+    },
+    {
+      "name": "IRA_CASH",
+      "value": 2300.0,
+      "weight": 15.742642026009582,
+      "target": 15.742642026009582,
+      "drift": 0,
+      "position": "Cash",
+      "signal": "Reserve",
+      "action": "Confirm 3-year coverage",
+      "note": "Excluded from 40/40/20 target"
+    }
+  ],
+  "benchmarks": [
+    {
+      "name": "Full IRA guide value",
+      "value": 14610.0,
+      "return_pct": 0,
+      "diff": 0,
+      "rule": "Reserve plus growth sleeve"
+    },
+    {
+      "name": "Growth sleeve",
+      "value": 12310.0,
+      "return_pct": 0,
+      "diff": -2300.0,
+      "rule": "QQQ/SPY/BTC only"
+    },
+    {
+      "name": "Cash reserve",
+      "value": 2300.0,
+      "return_pct": 0,
+      "diff": -12310.0,
+      "rule": "Withdrawals first for 3 years"
+    }
+  ],
+  "rules": [
+    {
+      "title": "Check reserve first",
+      "copy": "Confirm IRA_CASH covers the intended three-year withdrawal need."
+    },
+    {
+      "title": "Apply strategy signals",
+      "copy": "QQQ, SPY, and BTC sleeve positions follow their source models."
+    },
+    {
+      "title": "Calculate growth-only weights",
+      "copy": "Use IRA_QQQ, IRA_SPY, and IRA_BTC for the 40/40/20 test."
+    },
+    {
+      "title": "Defensive signal wins",
+      "copy": "Never override an exit merely because a sleeve is below target."
+    }
+  ],
+  "metrics": [
+    {
+      "label": "Cash reserve",
+      "value": "$2,300",
+      "note": "3-year protection bucket"
+    },
+    {
+      "label": "Growth sleeve",
+      "value": "$12,310",
+      "note": "84.3% of full IRA"
+    },
+    {
+      "label": "QQQ strategy",
+      "value": "Hold QQQ",
+      "note": "Donchian signal 0"
+    },
+    {
+      "label": "SPY strategy",
+      "value": "Hold SSO",
+      "note": "SPY $757.67 \u00b7 SMA200 $697.91"
+    },
+    {
+      "label": "BTC strategy",
+      "value": "Hold Cash",
+      "note": "Cycle day 836"
+    },
+    {
+      "label": "Annual band test",
+      "value": "In band",
+      "note": "QQQ 35\u201345 \u00b7 SPY 35\u201345 \u00b7 BTC 15\u201325"
+    }
+  ],
+  "market_date": "2026-08-03",
+  "generated_at": "2026-08-04T00:40:36+00:00",
+  "footer": "Daily market and strategy refresh at 6:25 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
+}
