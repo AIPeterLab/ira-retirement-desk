@@ -57,25 +57,18 @@
   ],
   "benchmarks": [
     {
-      "name": "Full IRA guide value",
+      "name": "IRA guide baseline",
       "value": 14610.0,
       "return_pct": 0,
       "diff": 0,
-      "rule": "Reserve plus growth sleeve"
+      "rule": "Starting total on 2026-08-03"
     },
     {
-      "name": "Growth sleeve",
-      "value": 12310.0,
-      "return_pct": 0,
-      "diff": -2300.0,
-      "rule": "QQQ/SPY/BTC only"
-    },
-    {
-      "name": "Cash reserve",
-      "value": 2300.0,
-      "return_pct": 0,
-      "diff": -12310.0,
-      "rule": "Withdrawals first for 3 years"
+      "name": "QQQ / SPY 50/50 benchmark",
+      "value": 14610.0,
+      "return_pct": 0.0,
+      "diff": 0.0,
+      "rule": "$7,305 QQQ + $7,305 SPY at start; buy and hold"
     }
   ],
   "rules": [
@@ -103,9 +96,9 @@
       "note": "3-year protection bucket"
     },
     {
-      "label": "Growth sleeve",
-      "value": "$12,310",
-      "note": "84.3% of full IRA"
+      "label": "50/50 benchmark",
+      "value": "$14,610",
+      "note": "QQQ $7,305 \u00b7 SPY $7,305"
     },
     {
       "label": "QQQ strategy",
@@ -129,6 +122,6 @@
     }
   ],
   "market_date": "2026-08-03",
-  "generated_at": "2026-08-04T00:40:36+00:00",
+  "generated_at": "2026-08-04T01:32:22+00:00",
   "footer": "Daily market and strategy refresh at 6:25 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }
