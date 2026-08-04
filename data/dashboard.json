@@ -65,9 +65,9 @@
     },
     {
       "name": "QQQ / SPY 50/50 benchmark",
-      "value": 14610.0,
-      "return_pct": 0.0,
-      "diff": 0.0,
+      "value": 14989.838003132609,
+      "return_pct": 2.5998494396482386,
+      "diff": 379.8380031326087,
       "rule": "$7,305 QQQ + $7,305 SPY at start; buy and hold"
     }
   ],
@@ -97,8 +97,8 @@
     },
     {
       "label": "50/50 benchmark",
-      "value": "$14,610",
-      "note": "QQQ $7,305 \u00b7 SPY $7,305"
+      "value": "$14,990",
+      "note": "QQQ $7,553 \u00b7 SPY $7,437"
     },
     {
       "label": "QQQ strategy",
@@ -108,7 +108,7 @@
     {
       "label": "SPY strategy",
       "value": "Hold SSO",
-      "note": "SPY $757.67 \u00b7 SMA200 $697.91"
+      "note": "SPY $771.33 \u00b7 SMA200 $698.47"
     },
     {
       "label": "BTC strategy",
@@ -121,7 +121,7 @@
       "note": "QQQ 35\u201345 \u00b7 SPY 35\u201345 \u00b7 BTC 15\u201325"
     }
   ],
-  "market_date": "2026-08-03",
-  "generated_at": "2026-08-04T01:32:22+00:00",
+  "market_date": "2026-08-04",
+  "generated_at": "2026-08-04T22:15:38+00:00",
   "footer": "Daily market and strategy refresh at 6:25 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }
