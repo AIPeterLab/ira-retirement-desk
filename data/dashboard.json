@@ -113,7 +113,7 @@
     {
       "label": "BTC strategy",
       "value": "Hold Cash",
-      "note": "Cycle day 837"
+      "note": "Cycle day 838"
     },
     {
       "label": "Annual band test",
@@ -122,6 +122,6 @@
     }
   ],
   "market_date": "2026-08-05",
-  "generated_at": "2026-08-05T22:15:30+00:00",
+  "generated_at": "2026-08-06T00:00:11+00:00",
   "footer": "Daily market and strategy refresh at 6:25 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }
