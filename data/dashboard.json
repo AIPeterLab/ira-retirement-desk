@@ -122,13 +122,21 @@
     }
   ],
   "market_date": "2026-08-13",
-  "generated_at": "2026-08-13T23:28:27+00:00",
+  "generated_at": "2026-08-13T23:39:39+00:00",
   "qqq_signal_source": {
     "repository": "AIPeterLab/qqq-qld-signal-desk",
     "source_market_date": "2026-08-12",
     "source_generated_at": "2026-08-13T21:00:13+00:00",
     "model_state": "QQQ",
     "donchian_signal": 0
+  },
+  "spy_signal_source": {
+    "repository": "AIPeterLab/spy-sso-signal-desk",
+    "source_market_date": "2026-08-13",
+    "source_generated_at": "2026-08-13T21:00:13+00:00",
+    "position": "SSO",
+    "trend_state": "SSO",
+    "sma200": 702.269422
   },
   "footer": "Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }
