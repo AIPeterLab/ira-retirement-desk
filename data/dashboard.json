@@ -16,8 +16,8 @@
       "weight": 39.90984220038838,
       "target": 40,
       "drift": -0.0901577996116174,
-      "position": "QLD",
-      "signal": "Risk-on",
+      "position": "QQQ",
+      "signal": "Defensive",
       "action": "No action",
       "note": "Growth sleeve weight"
     },
@@ -102,8 +102,8 @@
     },
     {
       "label": "QQQ strategy",
-      "value": "Hold QLD",
-      "note": "Donchian signal 1"
+      "value": "Hold QQQ",
+      "note": "Donchian signal 0"
     },
     {
       "label": "SPY strategy",
@@ -122,6 +122,13 @@
     }
   ],
   "market_date": "2026-08-13",
-  "generated_at": "2026-08-13T21:00:13+00:00",
+  "generated_at": "2026-08-13T23:28:27+00:00",
+  "qqq_signal_source": {
+    "repository": "AIPeterLab/qqq-qld-signal-desk",
+    "source_market_date": "2026-08-12",
+    "source_generated_at": "2026-08-13T21:00:13+00:00",
+    "model_state": "QQQ",
+    "donchian_signal": 0
+  },
   "footer": "Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }

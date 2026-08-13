@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json,time
+import json,os,time
 from datetime import date,datetime,timedelta,timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -8,6 +8,8 @@ from urllib.request import Request,urlopen
 
 ROOT=Path(__file__).resolve().parents[1]; MODE="ira"; START=date(2026,8,3)
 SYMBOLS=["QQQ","QLD","SPY","SSO","CHAT","QTUM","BTC-USD"]
+QQQ_SIGNALS_URL=os.environ.get("QQQ_SIGNALS_URL","https://raw.githubusercontent.com/AIPeterLab/qqq-qld-signal-desk/main/data/signals.json")
+MAX_SIGNAL_AGE_HOURS=int(os.environ.get("MAX_QQQ_SIGNAL_AGE_HOURS","96"))
 HALVING=date(2024,4,20); BTC_BUY=HALVING-timedelta(days=500); BTC_SELL=HALVING+timedelta(days=540)
 IRA_START_VALUES={"IRA_QQQ":4880.0,"IRA_SPY":4880.0,"IRA_BTC":2550.0,"IRA_CASH":2300.0}
 
@@ -19,29 +21,20 @@ def fetch(symbol):
     return {datetime.fromtimestamp(t,timezone.utc).date():float(v) for t,v in zip(p["timestamp"],a) if v is not None}
 
 def sma(vals,n): return sum(vals[-n:])/n if len(vals)>=n else None
-def ema(vals,n):
-    if len(vals)<n:return None
-    x=sum(vals[:n])/n; a=2/(n+1)
-    for v in vals[n:]:x=v*a+x*(1-a)
-    return x
-
 def aligned(series):
     days=sorted(set.intersection(*(set(x) for x in series.values())))
     return days
 
-def qld_states(q,qld):
-    days=sorted(set(q)&set(qld)); sig=0; pos="Cash"; out={}
-    qvals=[]
-    for i,d in enumerate(days):
-        qvals.append(q[d]); e=ema(qvals,200); prior=[qld[x] for x in days[max(0,i-20):i]]
-        if len(prior)==20:
-            if sig==0 and qld[d]>max(prior):sig=1
-            elif sig==1 and qld[d]<min(prior):sig=0
-        if sig==1:pos="QLD"
-        elif pos=="QLD":pos="QQQ"
-        if pos=="QQQ" and e and q[d]<e:pos="Cash"
-        out[d]=(pos,sig,e,max(prior) if len(prior)==20 else None,min(prior) if len(prior)==20 else None)
-    return out
+def fetch_qqq_signals():
+    with urlopen(Request(QQQ_SIGNALS_URL,headers={"User-Agent":"AIPeterLab-retirement-dashboard"}),timeout=40) as r: source=json.load(r)
+    generated=datetime.fromisoformat(source["generated_at_utc"].replace("Z","+00:00"))
+    age=(datetime.now(timezone.utc)-generated.astimezone(timezone.utc)).total_seconds()/3600
+    if age<0 or age>MAX_SIGNAL_AGE_HOURS:raise RuntimeError(f"QQQ Signal Desk source is stale ({age:.1f} hours old)")
+    current=source.get("current",{}); state=current.get("model_state"); signal=current.get("donchian_signal")
+    if state not in {"QLD","QQQ","Cash"} or signal not in {0,1}:raise RuntimeError("QQQ Signal Desk source has an invalid current signal")
+    history={date.fromisoformat(row["date"]):(row["model_state"],row["donchian_signal"],row.get("qqq_ema200"),row.get("qld_prior_20d_high"),row.get("qld_prior_20d_low")) for row in source.get("recent_history",[]) if row.get("model_state") in {"QLD","QQQ","Cash"}}
+    history[date.fromisoformat(source["last_updated"])]=(state,signal,source.get("market",{}).get("qqq_ema200"),source.get("market",{}).get("qld_prior_20d_high"),source.get("market",{}).get("qld_prior_20d_low"))
+    return source,history
 
 def spy_states(spy):
     out={}; vals=[]; pos="Cash"
@@ -84,9 +77,15 @@ def simulate_ira(px,qs,ss):
     return values,days[-1]
 
 def status_action(weight,target,lo,hi):return "Rebalance toward target" if weight<lo or weight>hi else "No action"
+def assert_qqq_consistency(payload,source):
+    expected_state=source["current"]["model_state"]; expected_note=f"Donchian signal {source['current']['donchian_signal']}"
+    sleeve=next((x for x in payload["sleeves"] if x["name"]=="IRA_QQQ"),None)
+    metric=next((x for x in payload["metrics"] if x["label"]=="QQQ strategy"),None)
+    if not sleeve or sleeve.get("position")!=expected_state or not metric or metric.get("value")!=f"Hold {expected_state}" or metric.get("note")!=expected_note:
+        raise RuntimeError("IRA QQQ output differs from QQQ Signal Desk")
 def write():
-    px={s:fetch(s) for s in SYMBOLS}; qs=qld_states(px["QQQ"],px["QLD"]); ss=spy_states(px["SPY"])
-    market=max(d for d in set(px["QQQ"])&set(px["SPY"])); qpos,qsig,qema,qhi,qlo=latest_on_or_before(qs,market); spos,ssma=latest_on_or_before(ss,market)
+    qqq_source,qs=fetch_qqq_signals(); px={s:fetch(s) for s in SYMBOLS}; ss=spy_states(px["SPY"])
+    market=max(d for d in set(px["QQQ"])&set(px["SPY"])); qpos=qqq_source["current"]["model_state"]; qsig=qqq_source["current"]["donchian_signal"]; spos,ssma=latest_on_or_before(ss,market)
     btc_day=max(px["BTC-USD"]); bpos="BTC" if BTC_BUY<=btc_day<=BTC_SELL else "Cash"; cycle=(btc_day-HALVING).days
     if MODE=="roth":
         vals,b1,b2,market=simulate_roth(px,qs); total=sum(vals.values()); specs=[("QQQ / QLD",30,25,35,qpos,"Risk-on" if qpos=="QLD" else "Defensive"),("CHAT",25,20,30,"CHAT","Hold"),("QTUM",25,20,30,"QTUM","Hold"),("BTC / Cash",20,15,25,bpos,"Risk-on" if bpos=="BTC" else "Risk-off")]
@@ -106,6 +105,7 @@ def write():
         qqq_benchmark=start_total*.5*px["QQQ"][market]/qqq_start; spy_benchmark=start_total*.5*px["SPY"][market]/spy_start
         benchmark_value=qqq_benchmark+spy_benchmark; benchmark_return=benchmark_value/start_total*100-100; active_return=total/start_total*100-100
         payload={"mark":"IRA","title":"IRA Reserve & Growth Desk","subtitle":"3-year cash reserve plus 40/40/20 growth sleeve","lead_label":"Live guide account value","total_value":total,"required_action":"Confirm reserve; "+("rebalance review" if outside else "no growth rebalance"),"next_review":"August 2027","explanation":"Estimated live values apply daily strategy returns to the August 3 guide balances. The cash reserve stays fixed; private broker balances are not fetched.","allocation_label":"Growth target 40/40/20","tracking_start":"2026-08-03","sleeves":sleeves,"benchmarks":[{"name":"Active IRA model","value":total,"return_pct":active_return,"diff":0,"rule":"Strategy-aware growth sleeves plus fixed cash reserve"},{"name":"QQQ / SPY 50/50 benchmark","value":benchmark_value,"return_pct":benchmark_return,"diff":benchmark_value-total,"rule":"$7,305 QQQ + $7,305 SPY at start; buy and hold"}],"rules":[{"title":"Check reserve first","copy":"Confirm IRA_CASH covers the intended three-year withdrawal need."},{"title":"Apply strategy signals","copy":"QQQ, SPY, and BTC sleeve positions follow their source models."},{"title":"Calculate growth-only weights","copy":"Use IRA_QQQ, IRA_SPY, and IRA_BTC for the 40/40/20 test."},{"title":"Defensive signal wins","copy":"Never override an exit merely because a sleeve is below target."}],"metrics":[{"label":"Cash reserve","value":f"${base['IRA_CASH']:,.0f}","note":"3-year protection bucket"},{"label":"50/50 benchmark","value":f"${benchmark_value:,.0f}","note":f"QQQ ${qqq_benchmark:,.0f} · SPY ${spy_benchmark:,.0f}"},{"label":"QQQ strategy","value":f"Hold {qpos}","note":f"Donchian signal {qsig}"},{"label":"SPY strategy","value":f"Hold {spos}","note":f"SPY ${px['SPY'][market]:.2f} · SMA200 ${ssma:.2f}"},{"label":"BTC strategy","value":f"Hold {bpos}","note":f"Cycle day {cycle}"},{"label":"Annual band test","value":"In band" if not outside else "Review","note":"QQQ 35–45 · SPY 35–45 · BTC 15–25"}]}
-    payload.update({"market_date":str(market),"generated_at":datetime.now(timezone.utc).isoformat(timespec="seconds"),"footer":"Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."})
+    assert_qqq_consistency(payload,qqq_source)
+    payload.update({"market_date":str(market),"generated_at":datetime.now(timezone.utc).isoformat(timespec="seconds"),"qqq_signal_source":{"repository":"AIPeterLab/qqq-qld-signal-desk","source_market_date":qqq_source["last_updated"],"source_generated_at":qqq_source["generated_at_utc"],"model_state":qpos,"donchian_signal":qsig},"footer":"Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."})
     (ROOT/"data").mkdir(exist_ok=True);(ROOT/"data"/"dashboard.json").write_text(json.dumps(payload,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__":write()
