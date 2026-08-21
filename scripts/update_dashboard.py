@@ -78,6 +78,12 @@ def simulate_ira(px,qs,ss):
     return values,days[-1]
 
 def status_action(weight,target,lo,hi):return "Rebalance toward target" if weight<lo or weight>hi else "No action"
+def add_holding_fields(sleeve,px,market):
+    position=sleeve["position"]
+    symbol="BTC-USD" if position=="BTC" else position
+    price=1.0 if position=="Cash" else latest_on_or_before(px[symbol],market)
+    sleeve.update({"price":round(price,2),"shares":round(sleeve["value"]/price,4)})
+    return sleeve
 def assert_qqq_consistency(payload,source):
     expected_state=source["current"]["model_state"]; expected_note=f"Donchian signal {source['current']['donchian_signal']}"
     sleeve=next((x for x in payload["sleeves"] if x["name"]=="IRA_QQQ"),None)
@@ -114,5 +120,6 @@ def write():
     assert_qqq_consistency(payload,qqq_source)
     assert_spy_consistency(payload,spy_source)
     payload.update({"market_date":str(market),"generated_at":datetime.now(timezone.utc).isoformat(timespec="seconds"),"qqq_signal_source":{"repository":"AIPeterLab/qqq-qld-signal-desk","source_market_date":qqq_source["last_updated"],"source_generated_at":qqq_source["generated_at_utc"],"model_state":qpos,"donchian_signal":qsig},"spy_signal_source":{"repository":"AIPeterLab/spy-sso-signal-desk","source_market_date":spy_source["last_updated"],"source_generated_at":spy_source["generated_at_utc"],"position":spos,"trend_state":spy_source["summary"]["trend_state"],"sma200":ssma},"footer":"Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."})
+    payload["sleeves"]=[add_holding_fields(x,px,market) for x in payload["sleeves"]]
     (ROOT/"data").mkdir(exist_ok=True);(ROOT/"data"/"dashboard.json").write_text(json.dumps(payload,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__":write()
