@@ -20,8 +20,8 @@
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 89.53,
-      "shares": 54.0407
+      "price": 89.52999877929688,
+      "shares": 56.338
     },
     {
       "name": "IRA_SPY",
@@ -33,7 +33,7 @@
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 70.15,
+      "price": 70.1500015258789,
       "shares": 70.7862
     },
     {
@@ -130,7 +130,7 @@
     }
   ],
   "market_date": "2026-08-21",
-  "generated_at": "2026-08-21T23:17:18+00:00",
+  "generated_at": "2026-08-21T23:31:08+00:00",
   "qqq_signal_source": {
     "repository": "AIPeterLab/qqq-qld-signal-desk",
     "source_market_date": "2026-08-21",
