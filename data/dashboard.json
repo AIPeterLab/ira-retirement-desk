@@ -3,7 +3,7 @@
   "title": "IRA Reserve & Growth Desk",
   "subtitle": "3-year cash reserve plus 40/40/20 growth sleeve",
   "lead_label": "Live guide account value",
-  "total_value": 14698.04,
+  "total_value": 14621.6,
   "required_action": "Confirm reserve; no growth rebalance",
   "next_review": "August 2027",
   "explanation": "Estimated live values apply daily strategy returns to the August 3 guide balances. The cash reserve stays fixed; private broker balances are not fetched.",
@@ -12,36 +12,36 @@
   "sleeves": [
     {
       "name": "IRA_QQQ",
-      "value": 4892.3,
-      "weight": 39.46026952647354,
+      "value": 4862.58,
+      "weight": 39.463868328788465,
       "target": 40,
-      "drift": -0.5397304735264612,
+      "drift": -0.5361316712115354,
       "position": "QLD",
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 90.52999877929688,
+      "price": 89.9800033569336,
       "shares": 56.338
     },
     {
       "name": "IRA_SPY",
-      "value": 4955.74,
-      "weight": 39.97196331032969,
+      "value": 4909.02,
+      "weight": 39.84076743280094,
       "target": 40,
-      "drift": -0.02803668967030859,
+      "drift": -0.1592325671990622,
       "position": "SSO",
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 70.01000213623047,
+      "price": 69.3499984741211,
       "shares": 70.7862
     },
     {
       "name": "IRA_BTC",
       "value": 2550.0,
-      "weight": 20.567767163196763,
+      "weight": 20.695364238410598,
       "target": 20,
-      "drift": 0.5677671631967627,
+      "drift": 0.6953642384105976,
       "position": "Cash",
       "signal": "Risk-off",
       "action": "No action",
@@ -52,9 +52,9 @@
     {
       "name": "IRA_CASH",
       "value": 2300.0,
-      "weight": 15.648344949394613,
+      "weight": 15.73015265087268,
       "target": 15.742642026009582,
-      "drift": -0.09429707661496955,
+      "drift": -0.012489375136901515,
       "position": "Cash",
       "signal": "Reserve",
       "action": "Confirm 3-year coverage",
@@ -66,16 +66,16 @@
   "benchmarks": [
     {
       "name": "Active IRA model",
-      "value": 14698.04,
-      "return_pct": 0.6026009582477769,
+      "value": 14621.6,
+      "return_pct": 0.07939767282682908,
       "diff": 0,
       "rule": "Strategy-aware growth sleeves plus fixed cash reserve"
     },
     {
       "name": "QQQ / SPY 50/50 benchmark",
-      "value": 14880.777487473642,
-      "return_pct": 1.8533708930434045,
-      "diff": 182.73748747364152,
+      "value": 14825.063176489219,
+      "return_pct": 1.4720272175853495,
+      "diff": 203.4631764892183,
       "rule": "$7,305 QQQ + $7,305 SPY at start; buy and hold"
     }
   ],
@@ -105,8 +105,8 @@
     },
     {
       "label": "50/50 benchmark",
-      "value": "$14,881",
-      "note": "QQQ $7,496 \u00b7 SPY $7,385"
+      "value": "$14,825",
+      "note": "QQQ $7,474 \u00b7 SPY $7,351"
     },
     {
       "label": "QQQ strategy",
@@ -116,12 +116,12 @@
     {
       "label": "SPY strategy",
       "value": "Hold SSO",
-      "note": "SPY $765.96 \u00b7 SMA200 $710.43"
+      "note": "SPY $762.40 \u00b7 SMA200 $710.95"
     },
     {
       "label": "BTC strategy",
       "value": "Hold Cash",
-      "note": "Cycle day 871"
+      "note": "Cycle day 872"
     },
     {
       "label": "Annual band test",
@@ -129,22 +129,22 @@
       "note": "QQQ 35\u201345 \u00b7 SPY 35\u201345 \u00b7 BTC 15\u201325"
     }
   ],
-  "market_date": "2026-09-08",
-  "generated_at": "2026-09-08T22:16:02+00:00",
+  "market_date": "2026-09-09",
+  "generated_at": "2026-09-09T22:16:00+00:00",
   "qqq_signal_source": {
     "repository": "AIPeterLab/qqq-qld-signal-desk",
-    "source_market_date": "2026-09-08",
-    "source_generated_at": "2026-09-08T22:15:36+00:00",
+    "source_market_date": "2026-09-09",
+    "source_generated_at": "2026-09-09T22:15:34+00:00",
     "model_state": "QLD",
     "donchian_signal": 1
   },
   "spy_signal_source": {
     "repository": "AIPeterLab/spy-sso-signal-desk",
-    "source_market_date": "2026-09-08",
-    "source_generated_at": "2026-09-08T22:15:38+00:00",
+    "source_market_date": "2026-09-09",
+    "source_generated_at": "2026-09-09T22:15:35+00:00",
     "position": "SSO",
     "trend_state": "SSO",
-    "sma200": 710.425069
+    "sma200": 710.951143
   },
   "footer": "Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }
