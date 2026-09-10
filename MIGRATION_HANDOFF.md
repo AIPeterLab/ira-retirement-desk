@@ -14,7 +14,7 @@ This repository publishes the IRA Reserve & Growth Desk at `ira.aipeterlab.com`.
 - `README.md`: short public project description.
 - `AGENTS.md`: durable Codex rules.
 
-The updater obtains market prices from Yahoo Finance's chart endpoint and strategy data from the AIPeterLab QQQ/QLD and SPY/SSO signal repositories. Strategy output is cross-checked before JSON is written. Private brokerage balances must remain out of the data flow and public output.
+The updater obtains market prices from Yahoo Finance's chart endpoint and strategy data from the AIPeterLab QQQ/QLD, SPY/SSO, and BTC signal desks. Strategy output is cross-checked before JSON is written. The BTC Desk percentage applies within the 20% BTC/Cash growth sleeve. Private brokerage balances must remain out of the data flow and public output.
 
 ## Recreate and operate
 
@@ -29,6 +29,7 @@ Optional environment-variable override names (never commit their values):
 
 - `QQQ_SIGNALS_URL`
 - `SPY_SIGNALS_URL`
+- `BTC_SIGNALS_URL`
 - `MAX_QQQ_SIGNAL_AGE_HOURS`
 
 External services: GitHub repository `AIPeterLab/ira-retirement-desk`, GitHub Actions with `contents: write`, upstream raw GitHub signal data, Yahoo Finance market data, and Cloudflare hosting/custom domain configuration.
