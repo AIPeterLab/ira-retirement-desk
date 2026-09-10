@@ -3,7 +3,7 @@
   "title": "IRA Reserve & Growth Desk",
   "subtitle": "3-year cash reserve plus 40/40/20 growth sleeve",
   "lead_label": "Live guide account value",
-  "total_value": 14698.04,
+  "total_value": 14434.68,
   "required_action": "Confirm reserve; no growth rebalance",
   "next_review": "August 2027",
   "explanation": "Estimated live values apply daily strategy returns to the August 3 guide balances. The cash reserve stays fixed; private broker balances are not fetched.",
@@ -12,55 +12,55 @@
   "sleeves": [
     {
       "name": "IRA_QQQ",
-      "value": 4892.3,
-      "weight": 39.46026952647354,
+      "value": 4756.66,
+      "weight": 39.19889111208536,
       "target": 40,
-      "drift": -0.5397304735264612,
+      "drift": -0.8011088879146371,
       "position": "QLD",
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 90.52999877929688,
+      "price": 88.0199966430664,
       "shares": 56.338
     },
     {
       "name": "IRA_SPY",
-      "value": 4955.74,
-      "weight": 39.97196331032969,
+      "value": 4848.85,
+      "weight": 39.95861448344744,
       "target": 40,
-      "drift": -0.02803668967030859,
+      "drift": -0.041385516552558954,
       "position": "SSO",
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 70.01000213623047,
+      "price": 68.5,
       "shares": 70.7862
     },
     {
       "name": "IRA_BTC",
-      "value": 2550.0,
-      "weight": 20.567767163196763,
+      "value": 2529.17,
+      "weight": 20.842494404467196,
       "target": 20,
-      "drift": 0.5677671631967627,
+      "drift": 0.842494404467196,
       "position": "Hold 50% BTC",
       "signal": "Partial allocation",
       "action": "No action",
       "note": "50% of this 20% sleeve is in BTC; 50% is cash",
       "btc_allocation_pct": 50.0,
       "cash_allocation_pct": 50.0,
-      "effective_btc_weight": 10.283883581598381,
-      "effective_total_btc_weight": 8.674626004555709,
-      "price": 78438.578125,
-      "shares": 0.01625476,
-      "btc_value": 1275.0,
-      "cash_value": 1275.0
+      "effective_btc_weight": 10.421247202233598,
+      "effective_total_btc_weight": 8.760741492017834,
+      "price": 77158.2109375,
+      "shares": 0.01638951,
+      "btc_value": 1264.59,
+      "cash_value": 1264.59
     },
     {
       "name": "IRA_CASH",
       "value": 2300.0,
-      "weight": 15.648344949394613,
+      "weight": 15.933848204463139,
       "target": 15.742642026009582,
-      "drift": -0.09429707661496955,
+      "drift": 0.19120617845355703,
       "position": "Cash",
       "signal": "Reserve",
       "action": "Confirm 3-year coverage",
@@ -72,16 +72,16 @@
   "benchmarks": [
     {
       "name": "Active IRA model",
-      "value": 14698.04,
-      "return_pct": 0.6026009582477769,
+      "value": 14434.68,
+      "return_pct": -1.2000000000000028,
       "diff": 0,
       "rule": "Strategy-aware growth sleeves plus fixed cash reserve"
     },
     {
       "name": "QQQ / SPY 50/50 benchmark",
-      "value": 14880.777487473642,
-      "return_pct": 1.8533708930434045,
-      "diff": 182.73748747364152,
+      "value": 14701.48976423746,
+      "return_pct": 0.6262133075801444,
+      "diff": 266.8097642374596,
       "rule": "$7,305 QQQ + $7,305 SPY at start; buy and hold"
     }
   ],
@@ -111,8 +111,8 @@
     },
     {
       "label": "50/50 benchmark",
-      "value": "$14,881",
-      "note": "QQQ $7,496 \u00b7 SPY $7,385"
+      "value": "$14,701",
+      "note": "QQQ $7,395 \u00b7 SPY $7,307"
     },
     {
       "label": "QQQ strategy",
@@ -122,7 +122,7 @@
     {
       "label": "SPY strategy",
       "value": "Hold SSO",
-      "note": "SPY $765.96 \u00b7 SMA200 $710.95"
+      "note": "SPY $757.83 \u00b7 SMA200 $711.50"
     },
     {
       "label": "BTC strategy",
@@ -135,22 +135,22 @@
       "note": "QQQ 35\u201345 \u00b7 SPY 35\u201345 \u00b7 BTC sleeve 15\u201325"
     }
   ],
-  "market_date": "2026-09-08",
-  "generated_at": "2026-09-10T00:02:45+00:00",
+  "market_date": "2026-09-10",
+  "generated_at": "2026-09-10T22:16:31+00:00",
   "qqq_signal_source": {
     "repository": "AIPeterLab/qqq-qld-signal-desk",
-    "source_market_date": "2026-09-09",
-    "source_generated_at": "2026-09-09T22:15:34+00:00",
+    "source_market_date": "2026-09-10",
+    "source_generated_at": "2026-09-10T22:16:06+00:00",
     "model_state": "QLD",
     "donchian_signal": 1
   },
   "spy_signal_source": {
     "repository": "AIPeterLab/spy-sso-signal-desk",
-    "source_market_date": "2026-09-09",
-    "source_generated_at": "2026-09-09T22:15:35+00:00",
+    "source_market_date": "2026-09-10",
+    "source_generated_at": "2026-09-10T22:16:06+00:00",
     "position": "SSO",
     "trend_state": "SSO",
-    "sma200": 710.951143
+    "sma200": 711.504451
   },
   "btc_signal_source": {
     "repository": "AIPeterLab/btc-cycle-signal-desk",
