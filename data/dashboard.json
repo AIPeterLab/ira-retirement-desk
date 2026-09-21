@@ -3,7 +3,7 @@
   "title": "IRA Reserve & Growth Desk",
   "subtitle": "3-year cash reserve plus 40/40/20 growth sleeve",
   "lead_label": "Live guide account value",
-  "total_value": 14569.77,
+  "total_value": 14856.21,
   "required_action": "Confirm reserve; no growth rebalance",
   "next_review": "August 2027",
   "explanation": "Estimated live values apply daily strategy returns to the August 3 guide balances. The cash reserve stays fixed; private broker balances are not fetched.",
@@ -12,55 +12,55 @@
   "sleeves": [
     {
       "name": "IRA_QQQ",
-      "value": 4812.17,
-      "weight": 39.219724575114284,
+      "value": 4945.71,
+      "weight": 39.388557534478956,
       "target": 40,
-      "drift": -0.7802754248857156,
-      "position": "QQQ",
-      "signal": "Defensive",
+      "drift": -0.6114424655210442,
+      "position": "QLD",
+      "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 721.4500122070312,
-      "shares": 6.9707
+      "price": 96.2699966430664,
+      "shares": 56.338
     },
     {
       "name": "IRA_SPY",
-      "value": 4911.85,
-      "weight": 40.03212774159581,
+      "value": 5064.75,
+      "weight": 40.33661431275839,
       "target": 40,
-      "drift": 0.03212774159580789,
+      "drift": 0.3366143127583925,
       "position": "SSO",
       "signal": "Risk-on",
       "action": "No action",
       "note": "Growth sleeve weight",
-      "price": 69.38999938964844,
+      "price": 71.55000305175781,
       "shares": 70.7862
     },
     {
       "name": "IRA_BTC",
       "value": 2545.75,
-      "weight": 20.748147683289904,
+      "weight": 20.27482815276266,
       "target": 20,
-      "drift": 0.7481476832899041,
-      "position": "Hold Cash",
-      "signal": "Risk-off",
+      "drift": 0.2748281527626588,
+      "position": "Hold 50% BTC",
+      "signal": "Partial allocation",
       "action": "No action",
-      "note": "0% of this 20% sleeve is in BTC; 100% is cash",
-      "btc_allocation_pct": 0.0,
-      "cash_allocation_pct": 100.0,
-      "effective_btc_weight": 0.0,
-      "effective_total_btc_weight": 0.0,
-      "price": 81273.3671875,
-      "shares": 0.0,
-      "btc_value": 0.0,
-      "cash_value": 2545.75
+      "note": "50% of this 20% sleeve is in BTC; 50% is cash",
+      "btc_allocation_pct": 50.0,
+      "cash_allocation_pct": 50.0,
+      "effective_btc_weight": 10.13741407638133,
+      "effective_total_btc_weight": 8.567965854009872,
+      "price": 86555.1328125,
+      "shares": 0.01470594,
+      "btc_value": 1272.88,
+      "cash_value": 1272.88
     },
     {
       "name": "IRA_CASH",
       "value": 2300.0,
-      "weight": 15.7861105563094,
+      "weight": 15.48174130548774,
       "target": 15.742642026009582,
-      "drift": 0.04346853029981723,
+      "drift": -0.26090072052184254,
       "position": "Cash",
       "signal": "Reserve",
       "action": "Confirm 3-year coverage",
@@ -72,16 +72,16 @@
   "benchmarks": [
     {
       "name": "Active IRA model",
-      "value": 14569.77,
-      "return_pct": -0.2753593429158059,
+      "value": 14856.21,
+      "return_pct": 1.6852156057494767,
       "diff": 0,
       "rule": "Strategy-aware growth sleeves plus fixed cash reserve"
     },
     {
       "name": "QQQ / SPY 50/50 benchmark",
-      "value": 14871.851930352961,
-      "return_pct": 1.7922787840722947,
-      "diff": 302.0819303529606,
+      "value": 15213.13714109682,
+      "return_pct": 4.128248741251326,
+      "diff": 356.9271410968213,
       "rule": "$7,305 QQQ + $7,305 SPY at start; buy and hold"
     }
   ],
@@ -111,23 +111,23 @@
     },
     {
       "label": "50/50 benchmark",
-      "value": "$14,872",
-      "note": "QQQ $7,528 \u00b7 SPY $7,344"
+      "value": "$15,213",
+      "note": "QQQ $7,737 \u00b7 SPY $7,476"
     },
     {
       "label": "QQQ strategy",
-      "value": "Hold QQQ",
-      "note": "Donchian signal 0"
+      "value": "Hold QLD",
+      "note": "Donchian signal 1"
     },
     {
       "label": "SPY strategy",
       "value": "Hold SSO",
-      "note": "SPY $761.69 \u00b7 SMA200 $714.24"
+      "note": "SPY $773.50 \u00b7 SMA200 $712.98"
     },
     {
       "label": "BTC strategy",
-      "value": "Hold Cash",
-      "note": "0% effective growth target \u00b7 cycle day 881"
+      "value": "Hold 50% BTC",
+      "note": "10% effective growth target \u00b7 cycle day 884"
     },
     {
       "label": "Annual band test",
@@ -135,29 +135,29 @@
       "note": "QQQ 35\u201345 \u00b7 SPY 35\u201345 \u00b7 BTC sleeve 15\u201325"
     }
   ],
-  "market_date": "2026-09-18",
-  "generated_at": "2026-09-18T22:16:45+00:00",
+  "market_date": "2026-09-21",
+  "generated_at": "2026-09-21T22:17:13+00:00",
   "qqq_signal_source": {
     "repository": "AIPeterLab/qqq-qld-signal-desk",
-    "source_market_date": "2026-09-18",
-    "source_generated_at": "2026-09-18T22:16:14+00:00",
-    "model_state": "QQQ",
-    "donchian_signal": 0
+    "source_market_date": "2026-09-21",
+    "source_generated_at": "2026-09-21T22:16:44+00:00",
+    "model_state": "QLD",
+    "donchian_signal": 1
   },
   "spy_signal_source": {
     "repository": "AIPeterLab/spy-sso-signal-desk",
-    "source_market_date": "2026-09-18",
-    "source_generated_at": "2026-09-18T22:16:13+00:00",
+    "source_market_date": "2026-09-21",
+    "source_generated_at": "2026-09-21T22:16:41+00:00",
     "position": "SSO",
     "trend_state": "SSO",
-    "sma200": 714.244581
+    "sma200": 712.981019
   },
   "btc_signal_source": {
     "repository": "AIPeterLab/btc-cycle-signal-desk",
-    "source_market_date": "2026-09-18",
-    "source_generated_at": "2026-09-18T22:16:08.058186+00:00",
-    "final_strategy_status": "Hold Cash",
-    "final_strategy_allocation_pct": 0.0
+    "source_market_date": "2026-09-21",
+    "source_generated_at": "2026-09-21T22:16:41.595686+00:00",
+    "final_strategy_status": "Hold 50% BTC",
+    "final_strategy_allocation_pct": 50.0
   },
   "footer": "Daily market and strategy refresh at 5:00 PM New York time. Private broker balances are not fetched. This is an operating display, not tax, legal, or individualized financial advice."
 }
