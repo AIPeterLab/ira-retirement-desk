@@ -115,6 +115,50 @@
     {
       "date": "2026-09-24",
       "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-09-25",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-09-26",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-09-27",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-09-28",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-09-29",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-09-30",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-10-01",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-10-02",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-10-03",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-10-04",
+      "allocation_pct": 50.0
+    },
+    {
+      "date": "2026-10-05",
+      "allocation_pct": 50.0
     }
   ]
 }

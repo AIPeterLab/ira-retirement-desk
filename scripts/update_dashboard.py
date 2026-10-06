@@ -9,7 +9,7 @@ from urllib.request import Request,urlopen
 ROOT=Path(__file__).resolve().parents[1]; MODE="ira"; START=date(2026,8,3)
 SYMBOLS=["QQQ","QLD","SPY","SSO","CHAT","QTUM","BTC-USD"]
 QQQ_SIGNALS_URL=os.environ.get("QQQ_SIGNALS_URL","https://raw.githubusercontent.com/AIPeterLab/qqq-qld-signal-desk/main/data/signals.json")
-SPY_SIGNALS_URL=os.environ.get("SPY_SIGNALS_URL","https://raw.githubusercontent.com/AIPeterLab/spy-sso-signal-desk/main/data/signals.json")
+SPY_SIGNALS_URL=os.environ.get("SPY_SIGNALS_URL","https://sso.aipeterlab.com/data/signals.json")
 BTC_SIGNALS_URL=os.environ.get("BTC_SIGNALS_URL","https://btc.aipeterlab.com/data/signals.json")
 MAX_SIGNAL_AGE_HOURS=int(os.environ.get("MAX_QQQ_SIGNAL_AGE_HOURS","96"))
 HALVING=date(2024,4,20); BTC_BUY=HALVING-timedelta(days=500); BTC_SELL=HALVING+timedelta(days=540)
