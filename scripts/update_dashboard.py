@@ -94,9 +94,13 @@ def simulate_roth(px,qs):
     return values,b1,b2,days[-1]
 
 def simulate_ira(px,qs,ss,bs):
-    days=[d for d in aligned({k:px[k] for k in ["QQQ","QLD","SPY","SSO","BTC-USD"]}) if d>=START]
+    # qs is a rolling window: clamp the start to its back edge so the first
+    # simulated day always has a signal. A hard START would KeyError once the
+    # window rolls past it (e.g. 2026-08-03 aging out).
+    start=max(START,min(qs))
+    days=[d for d in aligned({k:px[k] for k in ["QQQ","QLD","SPY","SSO","BTC-USD"]}) if d>=start]
     if not days:
-        raise RuntimeError(f"No common market data is available on or after {START}")
+        raise RuntimeError(f"No common market data is available on or after {start}")
     values=IRA_START_VALUES.copy(); prev=days[0]
     for d in days[1:]:
         qpos=qs[prev][0]
