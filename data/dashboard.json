@@ -3,7 +3,7 @@
   "title": "IRA Reserve & Growth Desk",
   "subtitle": "3-year cash reserve plus 40/40/20 growth sleeve",
   "lead_label": "Live guide account value",
-  "total_value": 15041.61,
+  "total_value": 14698.84,
   "required_action": "Confirm reserve; no growth rebalance",
   "next_review": "August 2027",
   "explanation": "Estimated live values apply daily strategy returns to the August 3 guide balances. The cash reserve stays fixed; private broker balances are not fetched.",
@@ -12,10 +12,10 @@
   "sleeves": [
     {
       "name": "IRA_QQQ",
-      "value": 5135.87,
-      "weight": 40.307857484258264,
+      "value": 4967.15,
+      "weight": 40.061408970516595,
       "target": 40,
-      "drift": 0.307857484258264,
+      "drift": 0.06140897051659522,
       "position": "QLD",
       "signal": "Risk-on",
       "action": "No action",
@@ -25,10 +25,10 @@
     },
     {
       "name": "IRA_SPY",
-      "value": 5071.7,
-      "weight": 39.80423196126706,
+      "value": 4897.65,
+      "weight": 39.5008726622813,
       "target": 40,
-      "drift": -0.19576803873294324,
+      "drift": -0.4991273377186971,
       "position": "SSO",
       "signal": "Risk-on",
       "action": "No action",
@@ -39,17 +39,17 @@
     {
       "name": "IRA_BTC",
       "value": 2534.04,
-      "weight": 19.88791055447467,
+      "weight": 20.43771836720209,
       "target": 20,
-      "drift": -0.1120894455253314,
+      "drift": 0.43771836720209123,
       "position": "Hold 50% BTC",
       "signal": "Partial allocation",
       "action": "No action",
       "note": "50% of this 20% sleeve is in BTC; 50% is cash",
       "btc_allocation_pct": 50.0,
       "cash_allocation_pct": 50.0,
-      "effective_btc_weight": 9.943955277237334,
-      "effective_total_btc_weight": 8.42343339576016,
+      "effective_btc_weight": 10.218859183601046,
+      "effective_total_btc_weight": 8.619863880415053,
       "price": 85786.59375,
       "shares": 0.01476944,
       "btc_value": 1267.02,
@@ -58,9 +58,9 @@
     {
       "name": "IRA_CASH",
       "value": 2300.0,
-      "weight": 15.290916331429946,
+      "weight": 15.647493271577892,
       "target": 15.742642026009582,
-      "drift": -0.4517256945796362,
+      "drift": -0.09514875443169046,
       "position": "Cash",
       "signal": "Reserve",
       "action": "Confirm 3-year coverage",
@@ -72,8 +72,8 @@
   "benchmarks": [
     {
       "name": "Active IRA model",
-      "value": 15041.61,
-      "return_pct": 2.954209445585221,
+      "value": 14698.84,
+      "return_pct": 0.6080766598220322,
       "diff": 0,
       "rule": "Strategy-aware growth sleeves plus fixed cash reserve"
     },
@@ -81,7 +81,7 @@
       "name": "QQQ / SPY 50/50 benchmark",
       "value": 15387.917283144197,
       "return_pct": 5.3245536149500055,
-      "diff": 346.30728314419684,
+      "diff": 689.0772831441973,
       "rule": "$7,305 QQQ + $7,305 SPY at start; buy and hold"
     }
   ],
@@ -122,12 +122,12 @@
     {
       "label": "SPY strategy",
       "value": "Hold SSO",
-      "note": "SPY $774.83 \u00b7 SMA200 $717.56"
+      "note": "SPY $774.83 \u00b7 SMA200 $718.13"
     },
     {
       "label": "BTC strategy",
       "value": "Hold 50% BTC",
-      "note": "10% effective growth target \u00b7 cycle day 898"
+      "note": "10% effective growth target \u00b7 cycle day 899"
     },
     {
       "label": "Annual band test",
@@ -136,26 +136,26 @@
     }
   ],
   "market_date": "2026-10-05",
-  "generated_at": "2026-10-06T11:43:09+00:00",
+  "generated_at": "2026-10-07T02:50:58+00:00",
   "qqq_signal_source": {
     "repository": "AIPeterLab/qqq-qld-signal-desk",
-    "source_market_date": "2026-10-05",
-    "source_generated_at": "2026-10-05T22:15:59+00:00",
+    "source_market_date": "2026-10-06",
+    "source_generated_at": "2026-10-06T22:15:47+00:00",
     "model_state": "QLD",
     "donchian_signal": 1
   },
   "spy_signal_source": {
     "repository": "AIPeterLab/spy-sso-signal-desk",
-    "source_market_date": "2026-10-05",
-    "source_generated_at": "2026-10-05T22:16:02+00:00",
+    "source_market_date": "2026-10-06",
+    "source_generated_at": "2026-10-06T22:15:46+00:00",
     "position": "SSO",
     "trend_state": "SSO",
-    "sma200": 717.555386
+    "sma200": 718.129664
   },
   "btc_signal_source": {
     "repository": "AIPeterLab/btc-cycle-signal-desk",
-    "source_market_date": "2026-10-05",
-    "source_generated_at": "2026-10-05T22:15:57.549727+00:00",
+    "source_market_date": "2026-10-06",
+    "source_generated_at": "2026-10-06T22:15:44.394388+00:00",
     "final_strategy_status": "Hold 50% BTC",
     "final_strategy_allocation_pct": 50.0
   },
